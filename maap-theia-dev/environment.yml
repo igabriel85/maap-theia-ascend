@@ -21,7 +21,7 @@ dependencies:
   - boto3=1.34.15
   - cython=3.0.7
   - earthengine-api=0.1.384
-  - gdal=3.7.0
+  - gdal
   - geocube=0.4.2
   - geopandas=0.14.2
   - h5py=3.9.0
