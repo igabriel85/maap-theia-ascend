@@ -20,7 +20,7 @@ attributes:
 components:
   - name: maappython
     container:
-      image: quay.io/igabriel185/maap-ubi8-dev:latest
+      image: quay.io/igabriel185/maap-theia-dev:latest
 commands:
   - id: run
     exec:
