@@ -151,8 +151,8 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 
 # Install maap-py library
 RUN mkdir $HOME/maap-py \
-    && git clone --single-branch --branch v3.1.4 https://github.com/MAAP-Project/maap-py.git /maap-py/ \
-    && pip install -e /maap-py/
+    && git clone --single-branch --branch v3.1.4 https://github.com/MAAP-Project/maap-py.git $HOME/maap-py/ \
+    && pip install -e $HOME/maap-py/
 
 # use conda env
 RUN echo "source activate pymaap" > ~/.bashrc
