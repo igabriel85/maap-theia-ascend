@@ -1,0 +1,40 @@
+schemaVersion: 2.2.2
+metadata:
+  name: maap-python-starter
+attributes:
+   .vscode/extensions.json: |
+      {
+         "recommendations": [
+            "redhat.java",
+            "ms-python.python",
+            "ms-toolsai.jupyter",
+            "ms-azuretools.vscode-docker",
+            "redhat.vscode-yaml",
+            "ms-azuretools.vscode-docker"
+         ]
+      }
+   .che/che-theia-plugins.yaml: |
+       - id: redhat/vscode-yaml
+       - id: ms-python/python
+       - id: ms-toolsai/jupyter
+components:
+  - name: maappython
+    container:
+      image: quay.io/igabriel185/maap-ubi8-dev:latest
+commands:
+  - id: run
+    exec:
+      label: "Run application"
+      component: maappython
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "python python-maap.py"
+      group:
+        kind: run
+  - id: test
+    exec:
+      label: "Test cmd_dev"
+      component: maappython
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "ls -laht /projects > /home/user/ls.txt"
+      group:
+        kind: run
