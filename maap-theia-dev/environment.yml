@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - octave=7.2.0
   - folium=0.15.1
   - gitpython=3.1.40
   - ipyleaflet=0.18.1
@@ -21,7 +20,7 @@ dependencies:
   - boto3=1.34.15
   - cython=3.0.7
   - earthengine-api=0.1.384
-  - gdal
+  - gdal=3.7.0
   - geocube=0.4.2
   - geopandas=0.14.2
   - h5py=3.9.0
