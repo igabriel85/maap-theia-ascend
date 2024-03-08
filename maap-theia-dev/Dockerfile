@@ -171,13 +171,14 @@ COPY initCredentials.sh $HOME/initCredentials.sh
 COPY Project_template.zip $HOME/Project_template.zip
 COPY shareAlgorithm.sh $HOME/shareAlgorithm.sh
 
-
+USER 0
 RUN  chmod +x $HOME/initTemplate.sh
 RUN  chmod +x $HOME/shareAlgorithm.sh
 RUN  chmod +x $HOME/ingestData.sh
 RUN  chmod +x $HOME/maap-s3.py
 RUN chmod +x $HOME/installLib.sh
 
+USER 10001
 # Install adiitional libraries
 RUN $HOME/installLib.sh
 
