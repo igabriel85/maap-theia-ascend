@@ -150,7 +150,7 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
     && $CONDA_DIR/bin/conda clean -afy
 
 # Install maap-py library
-RUN mkdir /maap-py \
+RUN mkdir $HOME/maap-py \
     && git clone --single-branch --branch v3.1.4 https://github.com/MAAP-Project/maap-py.git /maap-py/ \
     && pip install -e /maap-py/
 
