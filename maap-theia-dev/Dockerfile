@@ -169,7 +169,7 @@ RUN  chmod +x $HOME/initTemplate.sh
 RUN  chmod +x $HOME/shareAlgorithm.sh
 RUN  chmod +x $HOME/ingestData.sh
 RUN  chmod +x $HOME/maap-s3.py
-RUN chmod +x $HOME/.installLib.sh
+RUN chmod +x $HOME/installLib.sh
 
 # Install adiitional libraries
 RUN $HOME/installLib.sh
