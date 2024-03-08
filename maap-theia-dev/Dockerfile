@@ -31,7 +31,7 @@ RUN mkdir -p /home/tooling/
 RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     dnf update -y && \
     dnf install -y bash curl diffutils git git-lfs iproute jq less lsof man nano procps p7zip p7zip-plugins \
-                   perl-Digest-SHA net-tools openssh-clients rsync socat sudo time vim wget zip stow octave && \
+                   perl-Digest-SHA net-tools openssh-clients rsync socat sudo time vim wget zip stow && \
                    dnf clean all
 
 
