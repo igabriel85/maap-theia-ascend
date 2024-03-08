@@ -165,6 +165,13 @@ COPY ingestData.sh $HOME/ingestData.sh
 COPY maap-s3.py $HOME/maap-s3.py
 COPY installLib.sh $HOME/installLib.sh
 
+# We add the script folder and the zip file to be able to unzip the structure of the project
+COPY initTemplate.sh $HOME/initTemplate.sh
+COPY initCredentials.sh $HOME/initCredentials.sh
+COPY Project_template.zip $HOME/Project_template.zip
+COPY shareAlgorithm.sh $HOME/shareAlgorithm.sh
+
+
 RUN  chmod +x $HOME/initTemplate.sh
 RUN  chmod +x $HOME/shareAlgorithm.sh
 RUN  chmod +x $HOME/ingestData.sh
@@ -177,7 +184,10 @@ RUN $HOME/installLib.sh
 # Install missing
 RUN pip install owslib opencv-python
 
-
+# Set the working directory
 WORKDIR /projects
+
+# add example project
+
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]

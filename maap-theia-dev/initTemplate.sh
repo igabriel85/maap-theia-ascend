@@ -7,7 +7,7 @@ pwd=`pwd`
 templateInitialisation() {
 
 	echo "#### Project initialisation is started in the folder $pwd ####"	
-	unzip /usr/bmap/Project_template.zip -d $pwd
+	unzip $HOME/Project_template.zip -d $pwd
 	mv $pwd/Project_template/* $pwd
 	rm -rf Project_template
 	rm main.py
