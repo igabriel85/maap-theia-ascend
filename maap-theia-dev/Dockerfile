@@ -102,15 +102,15 @@ COPY --chown=0:0 entrypoint.sh /
 COPY --chown=0:0 .stow-local-ignore /home/tooling/
 RUN \
     # add user and configure it
-    useradd -u 10001 -G wheel,root -d /home/user --shell /bin/bash -m user && \
+    useradd -u 1234 -G wheel,root -d /home/user --shell /bin/bash -m user && \
     # Setup $PS1 for a consistent and reasonable prompt
     touch /etc/profile.d/udi_prompt.sh && \
-    chown 10001 /etc/profile.d/udi_prompt.sh && \
+    chown 1234 /etc/profile.d/udi_prompt.sh && \
     echo "export PS1='\W \`git branch --show-current 2>/dev/null | sed -r -e \"s@^(.+)@\(\1\) @\"\`$ '" >> /etc/profile.d/udi_prompt.sh && \
     # Copy the global git configuration to user config as global /etc/gitconfig
     # file may be overwritten by a mounted file at runtime
     cp /etc/gitconfig ${HOME}/.gitconfig && \
-    chown 10001 ${HOME}/ ${HOME}/.viminfo ${HOME}/.gitconfig ${HOME}/.stow-local-ignore && \
+    chown 1234 ${HOME}/ ${HOME}/.viminfo ${HOME}/.gitconfig ${HOME}/.stow-local-ignore && \
     # Set permissions on /etc/passwd and /home to allow arbitrary users to write
     chgrp -R 0 /home && \
     chmod -R g=u /etc/passwd /etc/group /home && \
@@ -122,7 +122,7 @@ RUN \
     # Bash-related files are backed up to /home/tooling/ incase they are deleted when persistUserHome is enabled.
     cp /home/user/.bashrc /home/tooling/.bashrc && \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
-    chown 10001 /home/tooling/.bashrc /home/tooling/.bash_profile
+    chown 1234 /home/tooling/.bashrc /home/tooling/.bash_profile
 
 
 # Set CONDA environment variables
@@ -135,7 +135,7 @@ ENV PATH "$PATH:$CONDA_DIR/bin"
 # Ajust permissions
 #RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
 
-USER 10001
+USER 1234
 ENV HOME=/home/user
 
 # Miniconda install
@@ -183,7 +183,7 @@ RUN chmod +x $HOME/installLib.sh
 
 #RUN chmod -R g=u /home/user/
 
-USER 10001
+USER 1234
 # Install adiitional libraries
 RUN $HOME/installLib.sh
 
