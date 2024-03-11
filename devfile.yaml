@@ -22,7 +22,6 @@ components:
     container:
       image: quay.io/igabriel185/maap-theia-dev:latest
     memoryLimit: 8Gi
-    memoryRequest: 4Gi
 commands:
   - id: initgitconfig
     exec:
