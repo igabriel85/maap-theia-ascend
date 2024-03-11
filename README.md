@@ -39,4 +39,20 @@ Workspace is running on Python 3.10.13 and conda environment.
     - fiona
     - scikit-learn
 - 
+# IDEs
+ In order to customize IDE edit the .che/che-editor.yaml file.
+Current options are supported:
+ - Eclipse Theia (VSCODE) (default)
+```yaml
+id: che-incubator/che-code/latest
+```
+- PyCharm (not working)
+```yaml
+id: che-incubator/che-pycharm/latest
+```
+- IntelliJ IDEA (not working)
+```yaml
+id: che-incubator/che-intellij/latest
+```
+
 ## ToDos
