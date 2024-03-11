@@ -22,19 +22,19 @@ components:
     container:
       image: quay.io/igabriel185/maap-theia-dev:latest
 commands:
-  - id: run
+  - id: init_git_config
     exec:
-      label: "Run application"
+      label: "Initialization of Git config, add user and password"
       component: maappython
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "python python-maap.py"
+      workingDir: ${HOME}
+      commandLine: "./initCredentials.sh"
       group:
         kind: run
-  - id: test
+  - id: ingest_data
     exec:
-      label: "Test cmd_dev"
+      label: "Ingest data"
       component: maappython
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "ls -laht /projects > /home/user/ls.txt"
+      workingDir: ${HOME}
+      commandLine: "./ingestData.sh"
       group:
         kind: run
