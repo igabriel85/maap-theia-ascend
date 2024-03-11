@@ -1,0 +1,9 @@
+{
+      "recommendations": [
+        "redhat.java",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker"
+      ]
+}
