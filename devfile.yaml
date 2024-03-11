@@ -22,7 +22,7 @@ components:
     container:
       image: quay.io/igabriel185/maap-theia-dev:latest
 commands:
-  - id: init_git_config
+  - id: initgitconfig
     exec:
       label: "Initialization of Git config, add user and password"
       component: maappython
@@ -30,7 +30,7 @@ commands:
       commandLine: "./initCredentials.sh"
       group:
         kind: run
-  - id: ingest_data
+  - id: ingestdata
     exec:
       label: "Ingest data"
       component: maappython
