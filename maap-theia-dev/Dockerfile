@@ -178,8 +178,8 @@ RUN  chmod +x $HOME/ingestData.sh
 RUN  chmod +x $HOME/maap-s3.py
 RUN chmod +x $HOME/installLib.sh
 
-RUN chmod -R g=u /home/user/
-RUN chown -R 10001:0 /home/user/
+#RUN chmod -R g=u /home/user/
+RUN chown -R 10001:10001 /home/user
 
 USER 10001
 # Install adiitional libraries
