@@ -113,7 +113,7 @@ We should note that a Conda environment named `pymaap` will be created and activ
     - octave_kernel
     - fiona
     - scikit-learn
-- 
+
 # IDEs
  In order to customize IDE edit the .che/che-editor.yaml file.
 Current options are supported:
@@ -121,11 +121,11 @@ Current options are supported:
 ```yaml
 id: che-incubator/che-code/latest
 ```
-- PyCharm (not working)
+- PyCharm (not tested)
 ```yaml
 id: che-incubator/che-pycharm/latest
 ```
-- IntelliJ IDEA (not working)
+- IntelliJ IDEA (not tested)
 ```yaml
 id: che-incubator/che-intellij/latest
 ```
@@ -223,3 +223,7 @@ For a complete overview of how we can use the Devfile Registry, please refer to 
 
 
 # ToDos
+- [x] initial functionality test.
+- [ ] test S3fs mountpoints
+- [ ] test additional scientific applications
+- [ ] full scale functionality test
