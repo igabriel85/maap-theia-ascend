@@ -193,9 +193,9 @@ An example of the `maap_sample.json` file is provided in this repository. The fi
 ```json
 [
   {
-    "displayName": "MAAP Python 3.10.5",
-    "description": "Python 3.10.5 sample MAAP using vanilla environment",
-    "tags": "maap, python 3.10.5",
+    "displayName": "MAAP Python 3.10.13",
+    "description": "Python 3.10.13 sample MAAP using vanilla environment",
+    "tags": "maap, python 3.10.13",
     "url": "https://github.com/igabriel85/maap-theia",
     "icon": {
       "base64data": "<base64_encoded_data>",
@@ -203,9 +203,9 @@ An example of the `maap_sample.json` file is provided in this repository. The fi
     }
   },
   {
-    "displayName": "MAAP Jupyter Python 3.10.5",
-    "description": "Python 3.10.5 sample MAAP using Jupyter environment",
-    "tags": "maap, python 3.10.5",
+    "displayName": "MAAP Jupyter Python 3.10.13",
+    "description": "Python 3.10.13 sample MAAP using Jupyter environment",
+    "tags": "maap, python 3.10.13",
     "url": "https://github.com/igabriel85/maap-jupyter",
     "icon": {
       "base64data": "<base64_encoded_data>",
@@ -219,7 +219,7 @@ For custom icons, we must convert the image data into base64 encoding. We can us
 ## Devfile Registry
 
 We can also create a custom devfile registry. This registry contains the devfile for the MAAP Eclipse Che workspace. It will enable complete controll over what sample workspaces are available in Eclipse Che. The other methods will just add the workspace to the list of available workspaces in Eclipse Che.
+For a complete overview of how we can use the Devfile Registry, please refer to the [MAAP Eclipse Che devfile registry](https://gitlab.dev.info.uvt.ro/sage/maap/che-dev-file-registry).
 
-```bash
 
 # ToDos
