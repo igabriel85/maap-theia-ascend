@@ -26,6 +26,11 @@ components:
             path: ${HOME}/eodata
       memoryLimit: 8Gi
       memoryRequest: 4Gi
+  - name: copernicus-eodata-cds-s3
+    volume:
+      name: copernicus-eodata-cds-s3
+      persistentVolumeClaim:
+        claimName: copernicus-eodata-cds-s3
 commands:
   - id: initgitconfig
     exec:
