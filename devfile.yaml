@@ -23,6 +23,13 @@ components:
       image: quay.io/igabriel185/maap-theia-dev:latest
       memoryLimit: 8Gi
       memoryRequest: 4Gi
+    volumeMounts:
+        - name: home
+          path: /home
+  - name: home
+    volume:
+      size: 100Gi
+
 
 commands:
   - id: initgitconfig
