@@ -25,7 +25,7 @@ components:
       memoryRequest: 4Gi
       volumeMounts:
           - name: home
-          path: /home
+            path: /home
   - name: home
     volume:
       size: 100Gi
