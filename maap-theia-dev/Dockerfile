@@ -150,7 +150,7 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
     && $CONDA_DIR/bin/conda clean -afy
 
 # Install missing
-RUN pip install owslib opencv-python
+RUN pip install owslib opencv-python setuptools-scm
 
 # Install maap-py library
 RUN mkdir $HOME/maap-py \
