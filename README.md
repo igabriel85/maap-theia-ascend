@@ -9,7 +9,7 @@ Workspace is running on Python 3.10.13 and conda environment.
 This workspace and associated Docker container are part of this repository. The `maap-theia-dev` folder contains the files
 and Dockerfile needed to build the Docker container. The Docker container is built using the following command:
 ```bash
-docker build --no-cache -t maap-theia-dev
+docker build --no-cache -t maap-theia-dev .
 ```
 
 Once the image is built it can be uploaded to a Docker registry. The image can be uploaded to a Docker registry. An example can be found here:
