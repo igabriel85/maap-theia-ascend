@@ -13,6 +13,17 @@ if ! whoami &> /dev/null; then
   fi
 fi
 
+# check if envvar set if not set it
+if [ -z "$CONDA_ENVS_PATH" ]; then
+  echo "CONDA_ENVS_PATH not set"
+  export CONDA_ENVS_PATH=$PROJECT_SOURCE/envs
+  echo "Setting CONDA_ENVS_PATH to $CONDA_ENVS_PATH"
+else
+  echo "CONDA_ENVS_PATH is set to $CONDA_ENVS_PATH"
+fi
+
+
+
 #source kubedock_setup
 #
 ## Stow
