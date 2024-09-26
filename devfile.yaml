@@ -23,7 +23,9 @@ components:
       image: quay.io/igabriel185/maap-theia-dev-ascend:latest
       memoryLimit: 8Gi
       memoryRequest: 4Gi
-
+      env:
+        - name: CONDA_ENVS_PATH
+          value: $PROJECT_SOURCE/envs
 
 commands:
   - id: initgitconfig

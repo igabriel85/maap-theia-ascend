@@ -23,7 +23,7 @@ LABEL modified.for="MAAP"
 USER 0
 
 # add env variables
-ENV HOME=/home/tooling
+ENV HOME=/home/user
 ENV BMAP_BACKEND_URL=http://backend-val.biomass-maap.com/bmap-web/
 
 RUN mkdir -p /home/tooling/
@@ -98,6 +98,13 @@ RUN \
     cd - && \
     rm -rf "${TEMP_DIR}"
 
+# Add kubedock
+ENV KUBEDOCK_VERSION 0.15.5
+ENV KUBECONFIG=/home/user/.kube/config
+RUN curl -L https://github.com/joyrex2001/kubedock/releases/download/${KUBEDOCK_VERSION}/kubedock_${KUBEDOCK_VERSION}_linux_amd64.tar.gz | tar -C /usr/local/bin -xz --no-same-owner \
+    && chmod +x /usr/local/bin/kubedock
+COPY --chown=0:0 kubedock_setup.sh /usr/local/bin/kubedock_setup
+
 COPY --chown=0:0 entrypoint.sh /
 COPY --chown=0:0 .stow-local-ignore /home/tooling/
 RUN \
@@ -124,19 +131,28 @@ RUN \
     cp /home/user/.bash_profile /home/tooling/.bash_profile && \
     chown 1234 /home/tooling/.bashrc /home/tooling/.bash_profile
 
+# set user as the owner of /opt
+RUN chown -R 1234:0 /opt && \
+    chmod -R g=u /opt
+
+
 
 # Set CONDA environment variables
-ENV CONDA_DIR /home/user/conda
+ENV CONDA_DIR /opt/conda
 
 # Appending to PATH conda and conda env
 ENV PATH "$PATH:$CONDA_DIR/envs/pymaap/bin"
 ENV PATH "$PATH:$CONDA_DIR/bin"
 
 # Ajust permissions
-#RUN chgrp -Rf root /home/user && chmod -Rf g+w /home/user
+# Create symbolic links from /home/tooling/ -> /home/user/
+RUN stow . -t /home/user/ -d /home/tooling/ --no-folding
+
+# Set permissions on /etc/passwd, /etc/group, /etc/pki and /home to allow arbitrary users to write
+RUN chgrp -R 0 /home && chmod -R g=u /etc/passwd /etc/group /home /etc/pki
 
 USER 1234
-ENV HOME=/home/user
+ENV HOME=/home/tooling
 
 # Miniconda install
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -153,9 +169,13 @@ RUN $CONDA_DIR/bin/conda env create -y -f "/tmp/environment.yml" \
 RUN pip install owslib opencv-python setuptools-scm
 
 # Install maap-py library
+
+# set home to tooling
+ENV HOME=/home/tooling
 RUN mkdir $HOME/maap-py \
     && git clone --single-branch --branch v3.1.4 https://github.com/MAAP-Project/maap-py.git $HOME/maap-py/ \
     && pip install -e $HOME/maap-py/
+
 
 # use conda env
 RUN echo "source activate pymaap" > ~/.bashrc
@@ -192,6 +212,7 @@ RUN $HOME/installLib.sh
 WORKDIR /projects
 
 # add example project
+ENV HOME=/home/user
 
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]
