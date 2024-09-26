@@ -196,6 +196,10 @@ WORKDIR /projects
 
 # Set home dir back to user user
 ENV HOME=/home/user
+ENV TOOLING_HOME=/home/tooling
+
+# use conda env
+RUN echo "source activate pymaap" > ~/.bashrc
 
 ENTRYPOINT ["/entrypoint.sh" ]
 CMD ["tail", "-f", "/dev/null"]

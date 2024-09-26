@@ -1,5 +1,11 @@
 #!/bin/bash
 #source activate pymaap
+
+source /opt/conda/etc/profile.d/conda.sh
+conda activate pymaap
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib
+
+
 # Ensure $HOME exists when starting
 if [ ! -d "${HOME}" ]; then
   mkdir -p "${HOME}"

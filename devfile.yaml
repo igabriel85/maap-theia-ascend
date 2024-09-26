@@ -32,7 +32,7 @@ commands:
     exec:
       label: "Initialization of Git config, add user and password"
       component: maappython
-      workingDir: ${HOME}
+      workingDir: ${TOOLING_HOME}
       commandLine: "./initCredentials.sh"
       group:
         kind: run
@@ -40,7 +40,7 @@ commands:
     exec:
       label: "Ingest data"
       component: maappython
-      workingDir: ${HOME}
+      workingDir: ${TOOLING_HOME}
       commandLine: "./ingestData.sh"
       group:
         kind: run
