@@ -221,6 +221,91 @@ For custom icons, we must convert the image data into base64 encoding. We can us
 We can also create a custom devfile registry. This registry contains the devfile for the MAAP Eclipse Che workspace. It will enable complete controll over what sample workspaces are available in Eclipse Che. The other methods will just add the workspace to the list of available workspaces in Eclipse Che.
 For a complete overview of how we can use the Devfile Registry, please refer to the [MAAP Eclipse Che devfile registry](https://gitlab.dev.info.uvt.ro/sage/maap/che-dev-file-registry).
 
+Note that in newer  versions of eclipse che, the devfile registry is not supported anymore, the getting started samples are taken from [registry.devfile.io](https://registry.devfile.io/viewer).
+Additional samples such as the ones developed for ESA MAAP will have to be added using the above mentioned configmap method.
+
+# How to use Eclipse Che
+
+Eclipse Che is a cloud-based IDE that allows users to develop, build, and run applications in the cloud. It provides a web-based interface that allows users to create and manage workspaces. Workspaces are containers that contain all the tools and dependencies needed to develop, build, and run applications.
+It is deigned aroun the concept of a devfile, which is a configuration file that defines the workspace. The devfile contains information about the components, commands, and plugins in the workspace. The devfile is used by Eclipse Che to create the workspace.
+
+After login users can create a new workspace by clicking on the `Create Workspace` button. They can then select the MAAP Python 3.10.13 workspace from the list of available workspaces. The workspace will be created and the user can start developing their application.
+Please note that you will need to use a sample workspace or alternatively users can import additional projects from git repositories.
+
+![Eclipse Che](img/eclipse-che.png)
+
+Once a workspace has been selected eclipse che will start deploying this workspace. Users ca view the progress of the deployment in the `Progress` tab. Logs are also avaibale on a per component basis in the `Logs` tab. For additional information regarding the workspace, deployment events can be viewd in the `Events` tab.
+
+
+Progress Tab:
+![Eclipse Che Progress tab](img/eclipse-che2.png)
+
+
+Events Tab:
+![Eclipse Che Events tab](img/eclipse-che3.png)
+
+Once the workspace has been successfully deployed, users can start developing their application. They can create new files, edit existing files, and run commands in the terminal. They can also use the built-in code editor (default is VS Code) to write and edit code. The code editor provides features such as syntax highlighting, code completion, and code navigation. Capabilities
+which are identical to the ones provided by the desktop version of VS Code, including plugin support:
+
+![Eclipse Che Code Editor](img/eclipse-che4.png)
+
+Users can also run commands in the terminal. The terminal provides a command-line interface that allows users to run commands, install packages, and manage files. Users can also run build and test commands in the terminal. The terminal provides a command-line interface that allows users to run commands, install packages, and manage files:
+
+![Eclipse Che Terminal](img/eclipse-che5.png)
+
+
+We should note at this stage that the workspace start with a default conda environment called `pymaap` or `base` depending on the underlying image. While users are able to install
+additional packages via the terminal this environment it is not persistent, and will be reset between workspace restarts. For persistent environments users should create a new conda environment
+in a location where PVC are mounted. By default these locations are accesibale via the `HOME` and `PROJECT_SOURCE` environment variables. In the case of this workspace these locations are `/home/user` and `/projects/maap-theia-ascend` resectively.
+
+For creating a new conda environment users can use the following command:
+```bash
+conda create -n myenv python=3.10.13
+```
+
+This command will create the `myenv` environment with Python version 3.10.13 in the default location defined by `$PROJECT_SOURCE/envs` folder.
+
+If a different location is prefered, users can specify the location by using the following command:
+```bash
+conda create -p /path/to/envs/myenv python=3.10.13
+```
+
+Note that if this environment is not placed inside one of the persistent volume mounts it will be reset between workspace restarts.
+
+In order to activate the environment users can use the following command:
+
+```bash
+source activate myenv
+```
+
+Users can also start a Jupyter Lab server by running the following command:
+```bash
+jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+```
+
+Once Jupyter is started Eclipse Che will detect that a server is running on port `8888` and will promt the user to open the server in a new browser tab:
+
+![Eclipse Che Dialog for new tab](img/eclipse-che6.png)
+
+If the user selects this a new tab will open in browser with the Jupyter lab instance:
+
+![Eclipse Che Jupyter Lab](img/eclipse-che7.png)
+
+
+We should note that the Jupyter Lab instance is running in the same container as the workspace. 
+If the entrypoints are not explicitly set in the devfile as being secured with the attribute `urlRewriteSupported: true` the Jupyter Lab instance will not use JWT tokens for authentification, the endpoint will be `publically` `accesible`. 
+The only security measure is the token/password set during the startup of the Jupyter Lab instance.
+
+An alternative is to use the Jupyter plugin for VS Code. This plugin provides a Jupyter Notebook interface in the VS Code editor. Users can create new notebooks, edit existing notebooks, and run code cells in the notebook. The plugin provides features such as syntax highlighting, code completion, and code navigation:
+
+![Eclipse Che VS Code Jupyter plugin](img/eclipse-che8.png)
+
+
+Workspaces can be stopped, restarted, and deleted using the buttons in the workspace view. Users can also view the logs and events for the workspace. The logs provide information about the workspace, such as the components that are running and the commands that have been executed. The events provide information about the workspace, such as when it was started, stopped, or deleted:
+
+![Eclipse Che Workspace](img/eclipse-che9.png)
+
+
 
 # ToDos
 - [x] initial functionality test.
