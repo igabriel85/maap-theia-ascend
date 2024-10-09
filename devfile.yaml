@@ -21,7 +21,7 @@ components:
   - name: maappython
     container:
       image: quay.io/igabriel185/maap-theia-dev-ascend:latest
-      memoryLimit: 8Gi
+      memoryLimit: 16Gi
       memoryRequest: 4Gi
       env:
         - name: CONDA_ENVS_PATH
