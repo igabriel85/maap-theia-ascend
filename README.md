@@ -229,12 +229,13 @@ Additional samples such as the ones developed for ESA MAAP will have to be added
 Eclipse Che is a cloud-based IDE that allows users to develop, build, and run applications in the cloud. It provides a web-based interface that allows users to create and manage workspaces. Workspaces are containers that contain all the tools and dependencies needed to develop, build, and run applications.
 It is deigned aroun the concept of a devfile, which is a configuration file that defines the workspace. The devfile contains information about the components, commands, and plugins in the workspace. The devfile is used by Eclipse Che to create the workspace.
 
-After login users can create a new workspace by clicking on the `Create Workspace` button. They can then select the MAAP Python 3.10.13 workspace from the list of available workspaces. The workspace will be created and the user can start developing their application.
+After login users can create a new workspace by clicking on the `Create Workspace` button. They can then select the `VSCode MAAP Python 3.10.5` workspace from the list of available workspaces. The workspace will be created and the user can start developing their application.
 Please note that you will need to use a sample workspace or alternatively users can import additional projects from git repositories.
 
 ![Eclipse Che](img/eclipse-che.png)
 
-Once a workspace has been selected eclipse che will start deploying this workspace. Users ca view the progress of the deployment in the `Progress` tab. Logs are also avaibale on a per component basis in the `Logs` tab. For additional information regarding the workspace, deployment events can be viewd in the `Events` tab.
+Once a workspace has been selected Eclipse Che will start deploying this workspace. Users can view the progress of the deployment in the `Progress` tab. 
+Logs are also avaibale on a per component basis in the `Logs` tab. For additional information regarding the workspace, deployment events can be viewed in the `Events` tab.
 
 
 Progress Tab:
@@ -244,8 +245,8 @@ Progress Tab:
 Events Tab:
 ![Eclipse Che Events tab](img/eclipse-che3.png)
 
-Once the workspace has been successfully deployed, users can start developing their application. They can create new files, edit existing files, and run commands in the terminal. They can also use the built-in code editor (default is VS Code) to write and edit code. The code editor provides features such as syntax highlighting, code completion, and code navigation. Capabilities
-which are identical to the ones provided by the desktop version of VS Code, including plugin support:
+Once the workspace has been successfully deployed, users can start developing their application. They can create new files, edit existing files, and run commands in the terminal. They can also use the built-in code editor (default is VS Code) to write and edit code. The code editor provides features such as syntax highlighting, code completion, and code navigation. 
+Capabilities are identical to the ones provided by the desktop version of VS Code, including plugin support:
 
 ![Eclipse Che Code Editor](img/eclipse-che4.png)
 
@@ -255,8 +256,8 @@ Users can also run commands in the terminal. The terminal provides a command-lin
 
 
 We should note at this stage that the workspace start with a default conda environment called `pymaap` or `base` depending on the underlying image. While users are able to install
-additional packages via the terminal this environment it is not persistent, and will be reset between workspace restarts. For persistent environments users should create a new conda environment
-in a location where PVC are mounted. By default these locations are accesibale via the `HOME` and `PROJECT_SOURCE` environment variables. In the case of this workspace these locations are `/home/user` and `/projects/maap-theia-ascend` resectively.
+additional packages via the terminal this environment might not be persistent, and could be reset between workspace restarts. For persistent environments users should create a new conda environment
+in a location where PVC are mounted. By default these locations are accessible via the `HOME` and `PROJECT_SOURCE` environment variables. In the case of this workspace these locations are `/home/user` and `/projects/maap-theia-ascend` respectively.
 
 For creating a new conda environment users can use the following command:
 ```bash
@@ -265,7 +266,7 @@ conda create -n myenv python=3.10.13
 
 This command will create the `myenv` environment with Python version 3.10.13 in the default location defined by `$PROJECT_SOURCE/envs` folder.
 
-If a different location is prefered, users can specify the location by using the following command:
+If a different location is preferred, users can specify the location by using the following command:
 ```bash
 conda create -p /path/to/envs/myenv python=3.10.13
 ```
@@ -283,7 +284,7 @@ Users can also start a Jupyter Lab server by running the following command:
 jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 ```
 
-Once Jupyter is started Eclipse Che will detect that a server is running on port `8888` and will promt the user to open the server in a new browser tab:
+Once Jupyter is started Eclipse Che will detect that a server is running on port `8888` and will prompt the user to open the server in a new browser tab:
 
 ![Eclipse Che Dialog for new tab](img/eclipse-che6.png)
 
@@ -309,6 +310,6 @@ Workspaces can be stopped, restarted, and deleted using the buttons in the works
 
 # ToDos
 - [x] initial functionality test.
-- [ ] test S3fs mountpoints
+- [x] test S3fs mountpoints
 - [ ] test additional scientific applications
 - [ ] full scale functionality test
